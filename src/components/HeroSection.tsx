@@ -152,6 +152,27 @@ const HeroSection = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-24">
         <div className="max-w-2xl">
           <div
+            className="inline-flex items-center gap-2 mb-4 animate-slide-up"
+            style={{
+              fontFamily: "'IBM Plex Mono', monospace",
+              fontSize: "0.7rem",
+              letterSpacing: "0.2em",
+              color: "rgba(255,255,255,0.35)",
+            }}
+          >
+            <span style={{ color: "var(--cosmos-cyan)" }}>✦</span>
+            АВТОР&nbsp;
+            <span
+              style={{
+                color: "var(--cosmos-cyan)",
+                textShadow: "0 0 12px rgba(0,212,255,0.7)",
+                fontWeight: 600,
+              }}
+            >
+              СТЁПА
+            </span>
+          </div>
+          <div
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 animate-slide-up"
             style={{
               background: "rgba(0,212,255,0.1)",
