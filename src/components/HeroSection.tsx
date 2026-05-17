@@ -191,7 +191,7 @@ const HeroSection = () => {
                 animation: "planet-glow 1.5s ease-in-out infinite",
               }}
             />
-            LIVE · COSMIC EXPLORER v2.0
+            LIVE · COSMIC EXPLORER v3.0
           </div>
 
           <h1
