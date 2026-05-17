@@ -4,89 +4,41 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 220 30% 4%;
+    --foreground: 210 40% 95%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 220 25% 7%;
+    --card-foreground: 210 40% 95%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 220 25% 7%;
+    --popover-foreground: 210 40% 95%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 200 100% 60%;
+    --primary-foreground: 220 30% 4%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 260 60% 50%;
+    --secondary-foreground: 210 40% 95%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 220 20% 12%;
+    --muted-foreground: 215 20% 55%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 200 100% 60%;
+    --accent-foreground: 220 30% 4%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 220 20% 15%;
+    --input: 220 20% 15%;
+    --ring: 200 100% 60%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --cosmos-cyan: #00d4ff;
+    --cosmos-purple: #7c3aed;
+    --cosmos-gold: #f59e0b;
+    --cosmos-dark: #050810;
+    --cosmos-mid: #0d1525;
   }
 }
 
@@ -97,5 +49,319 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: "Cormorant Garamond", serif;
+    background-color: var(--cosmos-dark);
+    overflow-x: hidden;
   }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--cosmos-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--cosmos-cyan);
+  border-radius: 2px;
+}
+
+/* Stars background */
+.stars-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle var(--duration, 3s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.3);
+  }
+}
+
+/* Orbit animation */
+@keyframes orbit {
+  from {
+    transform: rotate(0deg) translateX(var(--orbit-r, 120px)) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(var(--orbit-r, 120px)) rotate(-360deg);
+  }
+}
+
+/* Planet pulse */
+@keyframes planet-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 40px 10px rgba(0, 212, 255, 0.3),
+      0 0 80px 20px rgba(0, 212, 255, 0.1);
+  }
+  50% {
+    box-shadow:
+      0 0 60px 20px rgba(0, 212, 255, 0.5),
+      0 0 120px 40px rgba(0, 212, 255, 0.2);
+  }
+}
+
+/* Floating */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Scan line */
+@keyframes scanline {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+/* Slide up */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Rotate slow */
+@keyframes rotateSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes counter-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+/* Glitch */
+@keyframes glitch {
+  0% {
+    text-shadow:
+      2px 0 var(--cosmos-cyan),
+      -2px 0 var(--cosmos-purple);
+  }
+  25% {
+    text-shadow:
+      -2px 0 var(--cosmos-cyan),
+      2px 0 var(--cosmos-purple);
+  }
+  50% {
+    text-shadow:
+      2px 2px var(--cosmos-cyan),
+      -2px -2px var(--cosmos-purple);
+  }
+  75% {
+    text-shadow:
+      -2px 2px var(--cosmos-cyan),
+      2px -2px var(--cosmos-purple);
+  }
+  100% {
+    text-shadow:
+      2px 0 var(--cosmos-cyan),
+      -2px 0 var(--cosmos-purple);
+  }
+}
+
+/* Nebula pulse */
+@keyframes nebula-drift {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.4;
+  }
+  33% {
+    transform: translate(30px, -20px) scale(1.05);
+    opacity: 0.6;
+  }
+  66% {
+    transform: translate(-20px, 30px) scale(0.95);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.4;
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+.animate-slide-up {
+  animation: slideUp 0.8s ease-out forwards;
+}
+.animate-fade-in {
+  animation: fadeIn 1s ease-out forwards;
+}
+.animate-rotate-slow {
+  animation: rotateSlow 20s linear infinite;
+}
+.animate-glitch {
+  animation: glitch 3s ease-in-out infinite;
+}
+.animate-planet-glow {
+  animation: planet-glow 3s ease-in-out infinite;
+}
+.animate-nebula {
+  animation: nebula-drift 15s ease-in-out infinite;
+}
+
+/* Glassmorphism */
+.glass {
+  background: rgba(13, 21, 37, 0.6);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 212, 255, 0.15);
+}
+
+.glass-hover {
+  transition: all 0.3s ease;
+}
+.glass-hover:hover {
+  background: rgba(13, 21, 37, 0.8);
+  border-color: rgba(0, 212, 255, 0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0, 212, 255, 0.15);
+}
+
+/* Neon text */
+.neon-text {
+  color: var(--cosmos-cyan);
+  text-shadow:
+    0 0 20px rgba(0, 212, 255, 0.8),
+    0 0 40px rgba(0, 212, 255, 0.4);
+}
+
+/* Gallery item hover */
+.gallery-item {
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+.gallery-item img {
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
+.gallery-item .overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(5, 8, 16, 0.9) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.gallery-item:hover .overlay {
+  opacity: 1;
+}
+
+/* Mission card 3D tilt */
+.mission-card {
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease;
+}
+
+/* Section reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Horizontal rule cosmic */
+.cosmic-hr {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--cosmos-cyan),
+    var(--cosmos-purple),
+    transparent
+  );
+  border: none;
+}
+
+/* Nav active */
+.nav-link {
+  position: relative;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+  transition: color 0.3s;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--cosmos-cyan);
+  transition: width 0.3s ease;
+}
+.nav-link:hover {
+  color: var(--cosmos-cyan);
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+.nav-link.active {
+  color: var(--cosmos-cyan);
+}
+.nav-link.active::after {
+  width: 100%;
 }
