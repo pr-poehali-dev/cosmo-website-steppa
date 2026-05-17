@@ -73,6 +73,35 @@ const Footer = () => {
           ))}
         </div>
       </div>
+
+      <div
+        className="mt-8 mx-auto text-center px-6 pb-2"
+        style={{ maxWidth: 600 }}
+      >
+        <div
+          className="px-6 py-4 rounded-2xl"
+          style={{
+            background: "rgba(0,212,255,0.06)",
+            border: "1px solid rgba(0,212,255,0.15)",
+          }}
+        >
+          <p
+            style={{
+              color: "rgba(255,255,255,0.55)",
+              fontFamily: "'Cormorant Garamond', serif",
+              fontSize: "1.05rem",
+              lineHeight: 1.7,
+            }}
+          >
+            А если нравится моё творчество —{" "}
+            <span style={{ color: "var(--cosmos-cyan)" }}>
+              подпишись на мой канал в MAX
+            </span>
+            , где я публикую свои постройки в{" "}
+            <span style={{ color: "var(--cosmos-cyan)" }}>SFS</span> ✦
+          </p>
+        </div>
+      </div>
     </footer>
   );
 };
