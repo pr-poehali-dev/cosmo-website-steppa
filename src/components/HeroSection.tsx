@@ -169,7 +169,7 @@ const HeroSection = () => {
                 fontWeight: 600,
               }}
             >
-              СТЁПА
+              СТЁПА ЕЩИГАНОВ
             </span>
           </div>
           <div
