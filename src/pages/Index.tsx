@@ -1,12 +1,46 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState, useEffect } from "react";
+import StarField from "@/components/StarField";
+import Navbar from "@/components/Navbar";
+import HeroSection from "@/components/HeroSection";
+import AboutSection from "@/components/AboutSection";
+import MissionsSection from "@/components/MissionsSection";
+import GallerySection from "@/components/GallerySection";
+import Footer from "@/components/Footer";
+
+const sections = ["hero", "about", "missions", "gallery"];
 
 const Index = () => {
+  const [activeSection, setActiveSection] = useState("hero");
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      { threshold: 0.3 }
+    );
+
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 color-black text-black">Добро пожаловать!</h1>
-        <p className="text-xl text-gray-600">тут будет отображаться ваш проект</p>
-      </div>
+    <div style={{ background: "var(--cosmos-dark)", minHeight: "100vh" }}>
+      <StarField />
+      <Navbar activeSection={activeSection} onNavigate={setActiveSection} />
+      <HeroSection />
+      <AboutSection />
+      <MissionsSection />
+      <GallerySection />
+      <Footer />
     </div>
   );
 };
